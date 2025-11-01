@@ -40,33 +40,6 @@ AI-powered command line tool with support for Google Gemini 2.5 Flash Lite and A
 
 When you start AgenticCLI, you'll see a professional yellow ASCII art banner with real-time status indicators:
 
-```text
-  ╔═══════════════════════════════════════════════════════════════╗
-  ║                                                               ║
-  ║   █████╗  ██████╗ ███████╗███╗   ██╗████████╗██╗ ██████╗    ║
-  ║  ██╔══██╗██╔════╝ ██╔════╝████╗  ██║╚══██╔══╝██║██╔════╝    ║
-  ║  ███████║██║  ███╗█████╗  ██╔██╗ ██║   ██║   ██║██║         ║
-  ║  ██╔══██║██║   ██║██╔══╝  ██║╚██╗██║   ██║   ██║██║         ║
-  ║  ██║  ██║╚██████╔╝███████╗██║ ╚████║   ██║   ██║╚██████╗    ║
-  ║  ╚═╝  ╚═╝ ╚═════╝ ╚══════╝╚═╝  ╚═══╝   ╚═╝   ╚═╝ ╚═════╝    ║
-  ║                                                               ║
-  ║   ██████╗██╗     ██╗   V1.0 Beta                            ║
-  ║  ██╔════╝██║     ██║                                         ║
-  ║  ██║     ██║     ██║                                         ║
-  ║  ██║     ██║     ██║                                         ║
-  ║  ╚██████╗███████╗██║                                         ║
-  ║   ╚═════╝╚══════╝╚═╝                                         ║
-  ║                                                               ║
-  ║              Your AI-Powered Command Line Tool                ║
-  ║                                                               ║
-  ║  Status: ● Online    Model: ● Ready    API: ● Connected      ║
-  ║  Type /help for available commands                            ║
-  ║                                                               ║
-  ╚═══════════════════════════════════════════════════════════════╝
-
-  Active Model: gemini
-```
-
 ### Status Indicators
 
 The welcome screen shows three dynamic status indicators:
@@ -467,4 +440,4 @@ agenticcli> what is git?   # AI query
 
 ## License
 
-ISC
+MIT
