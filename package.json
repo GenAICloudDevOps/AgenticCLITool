@@ -1,0 +1,23 @@
+{
+  "name": "agenticcli",
+  "version": "1.0.0",
+  "description": "AI-powered command line tool with multiple model support",
+  "main": "src/index.js",
+  "type": "module",
+  "bin": {
+    "agenticcli": "./src/index.js"
+  },
+  "scripts": {
+    "start": "node src/index.js"
+  },
+  "keywords": ["cli", "ai", "gemini", "bedrock", "agent"],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^16.4.5",
+    "@google/generative-ai": "^0.21.0",
+    "@aws-sdk/client-bedrock-runtime": "^3.709.0",
+    "inquirer": "^9.2.12",
+    "inquirer-autocomplete-prompt": "^3.0.1"
+  }
+}
