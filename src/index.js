@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 
 import readline from 'readline';
+import ora from 'ora';
 import { showWelcome, formatError, formatInfo } from './utils/display.js';
 import { loadConfig, getEnvConfig } from './utils/config.js';
 import { ModelManager } from './ai/modelManager.js';
@@ -198,10 +199,26 @@ async function main() {
                 historyManager.addMessage('assistant', result.output);
               }
             } else {
-              // Show thinking message in green
-              const green = '\x1b[32m';
-              const reset = '\x1b[0m';
-              console.log('\n' + green + 'Agent is thinking...' + reset + '\n');
+              // Show animated thinking message with spinner and dots
+              const spinner = ora({
+                text: 'Agent is thinking.',
+                color: 'green',
+                spinner: {
+                  interval: 300,
+                  frames: [
+                    'Agent is thinking. ⠋',
+                    'Agent is thinking.. ⠙',
+                    'Agent is thinking... ⠹',
+                    'Agent is thinking. ⠸',
+                    'Agent is thinking.. ⠼',
+                    'Agent is thinking... ⠴',
+                    'Agent is thinking. ⠦',
+                    'Agent is thinking.. ⠧',
+                    'Agent is thinking... ⠇',
+                    'Agent is thinking. ⠏'
+                  ]
+                }
+              }).start();
               
               historyManager.addMessage('user', input);
               
@@ -209,7 +226,13 @@ async function main() {
               
               // Stream the response
               let fullResponse = '';
+              let firstChunk = true;
               for await (const chunk of modelManager.streamMessage(input, history)) {
+                if (firstChunk) {
+                  spinner.stop();
+                  console.log(); // Add newline after spinner
+                  firstChunk = false;
+                }
                 process.stdout.write(chunk);
                 fullResponse += chunk;
               }
