@@ -1,4 +1,4 @@
-# AgenticCLI V1.0 Beta
+# AgenticCLI V2.0 Beta
 
 AI-powered command line tool with support for Google Gemini 2.5 Flash Lite and AWS Bedrock Nova models.
 
@@ -12,6 +12,7 @@ AI-powered command line tool with support for Google Gemini 2.5 Flash Lite and A
 - **Tab Completion** - Press Tab to auto-complete selected commands
 - **Smart Input Detection** - Automatically detects AI queries vs system commands
 - **Dynamic Status Indicators** - Real-time display of system, model, and API status
+- **Application Launcher** - Open Excel, Word, Slack, Chrome, VS Code, and more directly
 - **Conversation History** - Maintains context across your session
 - **File Operations** - Read, analyze, and explain files with AI
 - **Configurable Preferences** - Customize temperature, tokens, and behavior
@@ -165,6 +166,17 @@ agenticcli> /c
 - `/read <file>` - Load file into context
 - `/analyze <file>` - AI analyzes the file
 - `/explain <file>` - AI explains what the file does
+
+### Software Commands
+
+- `excel` - Open Microsoft Excel
+- `word` - Open Microsoft Word
+- `slack` - Open Slack
+- `chrome` - Open Chrome Browser
+- `code` - Open Visual Studio Code
+- `kiro` - Open Kiro IDE
+- `notepad++` - Open Notepad++
+- `git-bash` - Open Git Bash
 
 ### Configuration Commands
 
@@ -332,6 +344,30 @@ Conversation History:
 [Assistant]: This file is the main entry point...
 ```
 
+### Opening Applications
+
+Launch your favorite applications directly from AgenticCLI:
+
+```bash
+# Open Microsoft Office applications
+agenticcli> excel
+agenticcli> word
+
+# Open development tools
+agenticcli> code .
+agenticcli> git-bash
+agenticcli> kiro
+
+# Open communication and browsers
+agenticcli> slack
+agenticcli> chrome
+
+# Open text editors
+agenticcli> notepad++
+```
+
+All application commands execute immediately without confirmation prompts, making it quick to launch your tools.
+
 ### Exiting
 
 Exit the CLI with a friendly agent-themed message:
@@ -413,11 +449,12 @@ agenticcli> what is git?   # AI query
 ## Tips & Tricks
 
 1. **Quick Command Access**: Type `/` and the first letter of a command, then press Tab
-2. **Context Awareness**: Load files with `/read` before asking questions about them
-3. **History Management**: Use `/clear-history` to start fresh conversations
-4. **Model Switching**: Try different models for different tasks (Gemini for general, Bedrock for specific use cases)
-5. **Save Important Chats**: Use `/save-chat` to export valuable conversations
-6. **Arrow Navigation**: Use ↑/↓ to quickly select from filtered commands
+2. **Launch Applications Fast**: Just type the app name - `excel`, `chrome`, `code`, etc.
+3. **Context Awareness**: Load files with `/read` before asking questions about them
+4. **History Management**: Use `/clear-history` to start fresh conversations
+5. **Model Switching**: Try different models for different tasks (Gemini for general, Bedrock for specific use cases)
+6. **Save Important Chats**: Use `/save-chat` to export valuable conversations
+7. **Arrow Navigation**: Use ↑/↓ to quickly select from filtered commands
 
 ## Troubleshooting
 
@@ -437,6 +474,41 @@ agenticcli> what is git?   # AI query
 - Make sure commands start with `/`
 - Use `/help` to see all available commands
 - Check for typos in command names
+
+## Version History
+
+### V2.0 Beta (November 2, 2025)
+
+**New Features:**
+- **Application Launcher** - Launch applications directly from AgenticCLI without confirmation prompts
+- **Software Commands** - Added support for opening:
+  - Microsoft Excel (`excel`)
+  - Microsoft Word (`word`)
+  - Slack (`slack`)
+  - Chrome Browser (`chrome`)
+  - Visual Studio Code (`code`)
+  - Kiro IDE (`kiro`)
+  - Notepad++ (`notepad++`)
+  - Git Bash (`git-bash`)
+- **Enhanced Help Menu** - Added dedicated "Software Commands" section in `/help`
+- **UI Update** - Changed welcome banner color from yellow to orange
+
+**Improvements:**
+- Application commands are recognized as system commands (not AI queries)
+- All software launch commands execute immediately without confirmation
+- Better command mapping for Windows platform
+
+### V1.0 Beta (Initial Release)
+
+- Multi-model AI support (Gemini 2.5 Flash Lite, AWS Bedrock Nova)
+- Real-time command filtering and autocomplete
+- Arrow key navigation for commands
+- Smart input detection (CLI commands, system commands, AI queries)
+- Dynamic status indicators
+- Conversation history management
+- File operations (read, analyze, explain)
+- Configurable preferences
+- Cross-platform support (Windows & Linux)
 
 ## License
 

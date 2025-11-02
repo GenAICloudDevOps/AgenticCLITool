@@ -1,6 +1,6 @@
 export function showWelcome(model, modelStatus = 'ready') {
   // ANSI color codes
-  const yellow = '\x1b[33m'; // Yellow color
+  const orange = '\x1b[38;5;208m'; // Orange color
   const green = '\x1b[32m';
   const bold = '\x1b[1m';
   const reset = '\x1b[0m';
@@ -27,7 +27,7 @@ export function showWelcome(model, modelStatus = 'ready') {
   }
   
   console.log('\n');
-  console.log(yellow + bold);
+  console.log(orange + bold);
   console.log('  ╔═══════════════════════════════════════════════════════════════╗');
   console.log('  ║                                                               ║');
   console.log('  ║                                                               ║');
@@ -38,7 +38,7 @@ export function showWelcome(model, modelStatus = 'ready') {
   console.log('  ║  ██║  ██║╚██████╔╝███████╗██║ ╚████║   ██║   ██║╚██████╗    ║');
   console.log('  ║  ╚═╝  ╚═╝ ╚═════╝ ╚══════╝╚═╝  ╚═══╝   ╚═╝   ╚═╝ ╚═════╝    ║');
   console.log('  ║                                                               ║');
-  console.log(reset + '  ║   ██████╗██╗     ██╗   ' + reset + 'V1.0 Beta' + yellow + bold + '                            ║');
+  console.log(reset + '  ║   ██████╗██╗     ██╗   ' + reset + 'V2.0 Beta' + orange + bold + '                            ║');
   console.log('  ║  ██╔════╝██║     ██║                                         ║');
   console.log('  ║  ██║     ██║     ██║                                         ║');
   console.log('  ║  ██║     ██║     ██║                                         ║');
@@ -48,8 +48,8 @@ export function showWelcome(model, modelStatus = 'ready') {
   console.log('  ║                                                               ║');
   console.log('  ║              Your AI-Powered Command Line Tool                ║');
   console.log('  ║                                                               ║');
-  console.log(reset + '  ║  Status: ' + green + '● Online' + reset + '    Model: ' + modelStatusDisplay + '    API: ' + apiStatus + '              ║' + yellow + bold);
-  console.log(reset + '  ║  Type /help for available commands                            ║' + yellow + bold);
+  console.log(reset + '  ║  Status: ' + green + '● Online' + reset + '    Model: ' + modelStatusDisplay + '    API: ' + apiStatus + '              ║' + orange + bold);
+  console.log(reset + '  ║  Type /help for available commands                            ║' + orange + bold);
   console.log('  ║                                                               ║');
   console.log('  ╚═══════════════════════════════════════════════════════════════╝');
   console.log(reset);
@@ -75,6 +75,16 @@ export function showHelp() {
   console.log('  /read <file>       - Load file into context');
   console.log('  /analyze <file>    - AI analyzes the file');
   console.log('  /explain <file>    - AI explains what the file does\n');
+  
+  console.log('Software Commands:');
+  console.log('  excel              - Open Microsoft Excel');
+  console.log('  word               - Open Microsoft Word');
+  console.log('  slack              - Open Slack');
+  console.log('  chrome             - Open Chrome Browser');
+  console.log('  code               - Open Visual Studio Code');
+  console.log('  kiro               - Open Kiro IDE');
+  console.log('  notepad++          - Open Notepad++');
+  console.log('  git-bash           - Open Git Bash\n');
   
   console.log('Configuration Commands:');
   console.log('  /config            - Show current settings');
