@@ -47,6 +47,32 @@ export class GeminiClient {
     }
   }
 
+  async *streamMessage(message, history = []) {
+    try {
+      if (!this.chat) {
+        await this.initialize();
+      }
+
+      // If history is provided, restart chat with history
+      if (history.length > 0) {
+        const formattedHistory = history.map(msg => ({
+          role: msg.role === 'user' ? 'user' : 'model',
+          parts: [{ text: msg.content }]
+        }));
+        this.chat = this.model.startChat({ history: formattedHistory });
+      }
+
+      const result = await this.chat.sendMessageStream(message);
+      
+      for await (const chunk of result.stream) {
+        const text = chunk.text();
+        yield text;
+      }
+    } catch (error) {
+      throw new Error(`Gemini API error: ${error.message}`);
+    }
+  }
+
   async analyzeFile(fileContent, fileName) {
     const prompt = `Analyze this file (${fileName}):\n\n${fileContent}\n\nProvide a detailed analysis including purpose, structure, and any issues or improvements.`;
     return await this.sendMessage(prompt);

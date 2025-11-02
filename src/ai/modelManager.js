@@ -72,6 +72,13 @@ export class ModelManager {
     return await this.currentModel.sendMessage(message, history);
   }
 
+  async *streamMessage(message, history = []) {
+    if (!this.currentModel) {
+      throw new Error('No model is currently active');
+    }
+    yield* this.currentModel.streamMessage(message, history);
+  }
+
   async analyzeFile(fileContent, fileName) {
     if (!this.currentModel) {
       throw new Error('No model is currently active');

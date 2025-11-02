@@ -1,4 +1,4 @@
-import { BedrockRuntimeClient, InvokeModelCommand } from '@aws-sdk/client-bedrock-runtime';
+import { BedrockRuntimeClient, InvokeModelCommand, InvokeModelWithResponseStreamCommand } from '@aws-sdk/client-bedrock-runtime';
 
 export class BedrockClient {
   constructor(credentials, config = {}) {
@@ -47,6 +47,45 @@ export class BedrockClient {
       const responseBody = JSON.parse(new TextDecoder().decode(response.body));
       
       return responseBody.output.message.content[0].text;
+    } catch (error) {
+      throw new Error(`Bedrock API error: ${error.message}`);
+    }
+  }
+
+  async *streamMessage(message, history = []) {
+    try {
+      const messages = history.length > 0 
+        ? [...history, { role: 'user', content: message }]
+        : [{ role: 'user', content: message }];
+
+      const payload = {
+        messages: messages.map(msg => ({
+          role: msg.role,
+          content: [{ text: msg.content }]
+        })),
+        inferenceConfig: {
+          temperature: this.config.temperature || 0.7,
+          maxTokens: this.config.maxTokens || 2048
+        }
+      };
+
+      const command = new InvokeModelWithResponseStreamCommand({
+        modelId: this.modelId,
+        contentType: 'application/json',
+        accept: 'application/json',
+        body: JSON.stringify(payload)
+      });
+
+      const response = await this.client.send(command);
+      
+      for await (const event of response.body) {
+        if (event.contentBlockDelta) {
+          const text = event.contentBlockDelta.delta?.text || '';
+          if (text) {
+            yield text;
+          }
+        }
+      }
     } catch (error) {
       throw new Error(`Bedrock API error: ${error.message}`);
     }

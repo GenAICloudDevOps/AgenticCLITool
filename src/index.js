@@ -206,12 +206,17 @@ async function main() {
               historyManager.addMessage('user', input);
               
               const history = historyManager.getContextForAI();
-              const response = await modelManager.sendMessage(input, history);
               
-              console.log(response);
-              console.log();
+              // Stream the response
+              let fullResponse = '';
+              for await (const chunk of modelManager.streamMessage(input, history)) {
+                process.stdout.write(chunk);
+                fullResponse += chunk;
+              }
               
-              historyManager.addMessage('assistant', response);
+              console.log('\n');
+              
+              historyManager.addMessage('assistant', fullResponse);
             }
           } catch (error) {
             console.log(formatError(error.message));
